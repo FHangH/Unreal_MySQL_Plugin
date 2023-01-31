@@ -1,0 +1,25 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "FhMySQL",
+	"Description": "UE4/UE5 MySQL Connector Plugin",
+	"Category": "MYSQL",
+	"CreatedBy": "FangHao",
+	"CreatedByURL": "https://fangh.space",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "FhMySQL",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": ["Win64"]
+		}
+	]
+}
