@@ -182,6 +182,26 @@ bool UBPFuncLib_FHSQL::SelectOnTableGetWhatByCondition(UFH_ConnectionObject* Con
 	return false;
 }
 
+bool UBPFuncLib_FHSQL::SelectOnTableGetWhatByMultiCondition(UFH_ConnectionObject* ConnectionObject, FString SqlQuery,
+	FString& ResStr)
+{
+	// SELECT UserID FROM UserInfo WHERE UserName='' AND UserEmail='';
+	if (!ConnectionObject || !ConnectionObject->Fh_ConnMysql) { return false; }
+	const std::string m_SqlQuery(TCHAR_TO_UTF8(*SqlQuery));
+	if (!mysql_query(ConnectionObject->Fh_ConnMysql, m_SqlQuery.c_str()))
+	{
+		MYSQL_RES* Res = mysql_store_result(ConnectionObject->Fh_ConnMysql);
+		if (mysql_num_rows(Res))
+		{
+			const MYSQL_ROW row = mysql_fetch_row(Res);
+			ResStr = row[0];
+		}
+		mysql_free_result(Res);
+		return true;
+	}
+	return false;
+}
+
 FString UBPFuncLib_FHSQL::SelectAllFormatSqlQuery(FString TableName)
 {
 	// SELECT * FROM TableName;
